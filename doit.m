@@ -1,0 +1,18 @@
+nf1=438;
+nf2=440;
+loadem;
+[mu,mv]=me(y1,y2);
+cdm=detectregion(y2-y1,0.667,25);
+y1p=mcp(y2,mu,mv);
+dfd=y1p-y1;
+btbc=detectregion(dfd,2,25);
+[xn,yn]=selectnodes(y1,y2,mu,mv,200,cdm);
+figure(1);clf;
+hold off;
+image(y1);
+colom=repmat((0:255)'/255,1,3);
+colormap(colom);
+hold on;
+tri=makemesh(xn,yn);
+drawmesh(tri,xn,yn,[1 1 1],1.0);
+hold off;
